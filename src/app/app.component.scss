@@ -1,0 +1,176 @@
+$dark-theme: "dark-theme";
+$light-theme: "light-theme";
+
+$general-background: "general-background";
+$border-color: "border-color";
+$primary-font-color: "primary-font-color";
+$input-background-color: "input-background-color";
+$input-foreground-color: "input-foreground-color";
+$icon-color: "icon-color";
+$icon-focus-color: "icon-focus-color";
+$submit-foreground-color: "submit-foreground-color";
+$submit-background-color: "submit-background-color";
+$button-foreground-color: "button-foreground-color";
+$button-background-color: "button-background-color";
+$button-primary-foreground-color: "button-primary-foreground-color";
+$button-primary-background-color: "button-primary-background-color";
+$button-cancel-foreground-color: "button-cancel-foreground-color";
+$button-cancel-background-color: "button-cancel-background-color";
+$seperator-color: "seperator-color";
+$links-hover-font-color: "links-hover-font-color";
+$list-items-background-color: "list-items-background-color";
+$list-items-border-color: "list-items-border-color";
+$list-items-foreground-color: "list-items-foreground-color";
+$list-items-active-background-color: "list-items-active-background-color";
+$list-items-active-border-color: "list-items-active-border-color";
+$list-items-active-foreground-color: "list-items-active-foreground-color";
+$card-background-color: "card-background-color";
+$card-border-color: "card-border-color";
+
+$themes: (
+  $light-theme: (
+    $general-background: #fff,
+    $border-color: #45f3ff,
+    $primary-font-color: #696969,
+    $input-background-color: #e6e6e6,
+    $input-foreground-color: #333,
+    $icon-color: #888,
+    $icon-focus-color: #45f3ff,
+    $submit-foreground-color: #ffffff,
+    $submit-background-color: #45f3ff,
+    $button-foreground-color: #ffffff,
+    $button-background-color: #45f3ff,
+    $button-primary-foreground-color: #ffffff,
+    $button-primary-background-color: #0d6efd,
+    $button-cancel-foreground-color: #ffffff,
+    $button-cancel-background-color: #dc3545,
+    $seperator-color: #45f3ff,
+    $links-hover-font-color: #45f3ff,
+    $list-items-background-color: #fff,
+    $list-items-border-color: #888,
+    $list-items-foreground-color: #333,
+    $list-items-active-background-color: #007bff,
+    $list-items-active-border-color: #007bff,
+    $list-items-active-foreground-color: #fff,
+    $card-background-color: #fff,
+    $card-border-color: rgba(0,0,0,.125)
+  ),
+  $dark-theme: (
+    $general-background: #28292d,
+    $border-color: #45f3ff,
+    $primary-font-color: #696969,
+    $input-background-color: #e6e6e6,
+    $input-foreground-color: #333,
+    $icon-color: #888,
+    $icon-focus-color: #45f3ff,
+    $submit-foreground-color: #ffffff,
+    $submit-background-color: #45f3ff,
+    $button-foreground-color: #ffffff,
+    $button-background-color: #45f3ff,
+    $button-primary-foreground-color: #ffffff,
+    $button-primary-background-color: #0d6efd,
+    $button-cancel-foreground-color: #ffffff,
+    $button-cancel-background-color: #dc3545,
+    $seperator-color: #45f3ff,
+    $links-hover-font-color: #45f3ff,
+    $list-items-background-color: #28292d,
+    $list-items-border-color: #696969,
+    $list-items-foreground-color: #ffffff,
+    $list-items-active-background-color: #007bff,
+    $list-items-active-border-color: #007bff,
+    $list-items-active-foreground-color: #fff,
+    $card-background-color: #fff,
+    $card-border-color: rgba(0,0,0,.125)
+  ),
+);
+
+@mixin themeProperty(
+  $theme,
+  $property,
+  $color,
+  $additionalPropertiesPositionIsFront,
+  $additionalProperties
+) {
+  @if $additionalPropertiesPositionIsFront {
+    #{$property}: unquote(
+      $additionalProperties + " " + map-get($theme, $color)
+    );
+  } @else {
+    #{$property}: unquote(
+      map-get($theme, $color) + " " + $additionalProperties
+    );
+  }
+}
+
+@mixin theme(
+  $property,
+  $color,
+  $additionalPropertiesPositionIsFront: false,
+  $additionalProperties: ""
+) {
+  $light: map-get($themes, $light-theme);
+  $dark: map-get($themes, $dark-theme);
+
+  @include themeProperty(
+    $light,
+    $property,
+    $color,
+    $additionalPropertiesPositionIsFront,
+    $additionalProperties
+  );
+
+  @media (prefers-color-scheme: dark) {
+    @include themeProperty(
+      $dark,
+      $property,
+      $color,
+      $additionalPropertiesPositionIsFront,
+      $additionalProperties
+    );
+  }
+}
+
+@mixin gradient($direction, $start-color, $end-color) { 
+    $light: map-get($themes, $light-theme);
+    $dark: map-get($themes, $dark-theme);
+  
+    // background: -webkit-linear-gradient($direction, map-get($light, $start-color), map-get($light, $end-color));
+    // background: -moz-linear-gradient($direction, map-get($light, $start-color), map-get($light, $end-color));
+    // background: -o-linear-gradient($direction, map-get($light, $start-color), map-get($light, $end-color));
+    background: linear-gradient($direction, map-get($light, $start-color), map-get($light, $end-color));  
+
+    @media (prefers-color-scheme: dark) {
+        // background: -webkit-linear-gradient($direction, map-get($light, $start-color), map-get($light, $end-color));
+        // background: -moz-linear-gradient($direction, map-get($light, $start-color), map-get($light, $end-color));
+        // background: -o-linear-gradient($direction, map-get($light, $start-color), map-get($light, $end-color));
+        background: linear-gradient($direction, map-get($dark, $start-color), map-get($light, $end-color));  
+    }
+}
+
+@mixin gradient-degree($degree, $color, $start-color, $end-color) { 
+    $light: map-get($themes, $light-theme);
+    $dark: map-get($themes, $dark-theme);
+  
+    // background: -webkit-linear-gradient($degree, $color, map-get($light, $start-color), map-get($light, $end-color));
+    // background: -moz-linear-gradient($degree, $color, map-get($light, $start-color), map-get($light, $end-color));
+    // background: -o-linear-gradient($degree, $color, map-get($light, $start-color), map-get($light, $end-color));
+    background: linear-gradient($degree, $color, map-get($light, $start-color), map-get($light, $end-color));  
+
+    @media (prefers-color-scheme: dark) {
+        // background: -webkit-linear-gradient($degree, $color, map-get($light, $start-color), map-get($light, $end-color));
+        // background: -moz-linear-gradient($degree, $color, map-get($light, $start-color), map-get($light, $end-color));
+        // background: -o-linear-gradient($degree, $color, map-get($light, $start-color), map-get($light, $end-color));
+        background: linear-gradient($degree, $color, map-get($dark, $start-color), map-get($light, $end-color));  
+    }
+}
+
+@mixin border($color) {
+  $light: map-get($themes, $light-theme);
+  $dark: map-get($themes, $dark-theme);
+
+  border: 1px solid map-get($light, $color);
+
+  @media (prefers-color-scheme: dark) {
+    border: 1px solid map-get($dark, $color);
+  }
+}

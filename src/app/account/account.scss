@@ -1,0 +1,247 @@
+@import '../app.component.scss';
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    position: relative;
+    border-radius: 8px;
+    min-height: 70vh;
+    @include theme('background', $general-background);
+}
+section::before
+{
+    content: '';
+    position: absolute;
+    top: -80%;
+    left: -30%;
+    width: 80%;
+    min-height: 90vh;
+    @include gradient-degree(0deg, transparent, $border-color, $border-color);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+section::after
+{
+    content: '';
+    position: absolute;
+    top: -80%;
+    left: -30%;
+    width: 80%;
+    min-height: 90vh;
+    @include gradient-degree(0deg, transparent, $border-color, $border-color);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+@keyframes animate {
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+.login-container {
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include theme('background', $general-background);
+    z-index: 10;
+    inset: 2px;
+    border-radius: 8px;
+    position: absolute;
+}
+
+.title {
+    text-transform: uppercase;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    @include theme('color', $primary-font-color);
+}
+
+.separator {
+    width: 150px;
+    height: 4px;
+    @include theme('background-color', $seperator-color);
+    margin: 24px;
+}
+
+.welcome-message {
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 28px;
+    margin-bottom: 30px;
+    @include theme('color', $primary-font-color);
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    width: 100%;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+}
+
+input {
+    width: 100%;
+    @include theme('background-color', $input-background-color);
+    @include theme('color', $input-foreground-color);
+    letter-spacing: 0.5px;
+    padding: 14px 64px;
+}
+
+input ~ i,
+input ~ fa-icon {
+    position: absolute;
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    @include theme('color', $icon-color);
+    transition: color   0.4s;
+}
+
+input:focus ~ i,
+input:focus ~ fa-icon {
+    @include theme('color', $icon-focus-color);
+}
+
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 14px 64px;
+    margin: 32px auto;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.4s;
+}
+
+button.submit {
+    @include theme('color', $submit-foreground-color);
+    @include gradient(to right, $submit-background-color, $submit-background-color);
+    width: 100%;
+}
+
+button.primary {
+    width: 49%;   
+    @include theme('color', $button-primary-foreground-color);
+    @include gradient(to right, $button-primary-background-color, $button-primary-background-color);
+}
+
+button.cancel {
+    width: 49%;
+    @include theme('color', $button-cancel-foreground-color);
+    @include gradient(to right, $button-cancel-background-color, $button-cancel-background-color);
+}
+
+button.submit:hover,
+button.primary:hover,
+button.cancel:hover {
+    opacity: 0.9;
+}
+
+.footer
+{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    @include theme('color', $primary-font-color);
+}
+
+.links
+{
+    display: flex;
+    justify-content: space-between;
+}
+.links a
+{
+    @include theme('color', $primary-font-color);
+    text-decoration: none;
+}
+.links a:hover
+{
+    @include theme('color', $links-hover-font-color);
+}
+
+.form-check {
+    display: flex;
+    justify-content: space-between!important;
+    min-height: 1.5rem;
+    padding-left: 1.5em;
+    margin-bottom: 0.125rem;
+}
+
+.inner-form-check {
+    padding-left: 5px;
+}
+
+.form-check-input:checked {
+    @include theme('background-color', $button-background-color);
+}
+
+.form-check-input[type=checkbox] {
+    border-radius: 0.25em;
+}
+
+.form-check .form-check-input {
+    float: left;
+    margin-left: -1.5em;
+}
+
+.form-check-input {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0px 0px;
+}
+
+.form-check-label {
+    @include theme('color', $primary-font-color);
+}
+
+/* ----  Responsiveness   ----  */
+@media (max-width: 912px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    section {
+        position: inherit;
+    }
+}

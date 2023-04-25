@@ -1,0 +1,11 @@
+{
+    "/api/*": {
+        "target": "http://192.168.12.30:3000/",
+        "secure": false,
+        "pathRewrite": {
+            "^/api": "/users"
+        },
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

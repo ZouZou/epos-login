@@ -1,0 +1,42 @@
+<section class="main">
+    <div class="login-container">
+        <p class="title">Welcome to ASF ePOS</p>
+        <div class="separator"></div>
+        <p class="welcome-message">Ver. 03.03.0335</p>
+        <p class="welcome-message">Thursday 16 February, 2023</p>
+
+        <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-control">
+                <input type="text" placeholder="Username" formControlName="username">
+                <i class="fas fa-user"></i>
+                <fa-icon [icon]="['fas', 'user']"></fa-icon>
+            </div>
+            <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>             -->
+            <div class="form-control">
+                <input type="password" placeholder="Password" formControlName="password">
+                <i class="fas fa-lock"></i>
+                <fa-icon [icon]="['fas', 'lock']"></fa-icon>
+            </div>
+            <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>             -->
+            <div class="form-check">
+                <div class="inner-form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="changePassword" formControlName="changePassword">
+                    <label class="form-check-label" for="changePassword">
+                      Change password?
+                    </label>
+                </div>
+                <label class="links">
+                    <a (click)="forgotPassword()">Forgot password?</a>
+                </label>
+            </div>
+
+            <button class="submit" [disabled]="isLoading$ | async">Login</button>
+        </form>
+
+        <p class="footer">© 2008 Data Quest sal. All rights reserved.</p>
+    </div>
+</section>

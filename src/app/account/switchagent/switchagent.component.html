@@ -1,0 +1,19 @@
+<section class="main">
+  <div class="login-container">
+    <dq-card [cardTitle]="'Switch Agents'" class="card-container">
+      <div class="list-group">
+        <a
+          class="list-group-item row list-group-row"
+          *ngFor="let agent of agents$ | async"
+          (click)="selectAgent(agent)"
+        >
+          <span class="col-sm-12">
+            <input type="hidden" value="[agent.code]" />
+            <input type="hidden" value="1" />
+            <span class="agent-item">{{ agent.code }} - {{ agent.name }}</span>
+          </span>
+        </a>
+      </div>
+    </dq-card>
+  </div>
+</section>
